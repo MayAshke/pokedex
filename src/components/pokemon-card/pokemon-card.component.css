@@ -1,10 +1,18 @@
 .card {
+    position: relative;
     width: 267.29168701171875px;
-    height: 255px;
+    height: 255px; 
 }
 
+@media (max-width: 768px) {
+    .card {
+      margin: 0 auto;
+    }
+}
+
+
 .Rectangle {
-    position: relative;
+    position: absolute;
     width: 240.5625px;
     height: 255px;
     background-color: #F7F7F9;
@@ -37,8 +45,8 @@
 
 .pokemon-id {
     position: absolute;
-    top: 10px;
-    left: 30.15px;
+    top: -5px;
+    left: 15px;
     width: 115.54;
     height: 18;
     font-family: 'Roboto';

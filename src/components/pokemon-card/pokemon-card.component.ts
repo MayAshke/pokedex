@@ -16,6 +16,11 @@ export class PokemonCardComponent {
     return urlParts[urlParts.length - 2];
   }
 
+  getFormattedPokemonId(): string {
+    const id = this.getPokemonId();
+    return id.toString().padStart(3, '0');
+  }
+
   getPokemonImageUrl(): string {
     const id = this.getPokemonId();
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;

@@ -1,7 +1,7 @@
 <div class="card">
   <div class="Rectangle">
-  <h3 class="pokemon-id">#{{ getPokemonId() }}</h3>
-  <img class="pokemon-image" [src]="getPokemonImageUrl()" [alt]="pokemon.name"/>
+    <h3 class="pokemon-id">#{{ getFormattedPokemonId() }}</h3>
+    <img class="pokemon-image" [src]="getPokemonImageUrl()" [alt]="pokemon.name"/>
   <h3 class="pokemon-name">{{ pokemon.name }}</h3>
   </div>
 </div>
