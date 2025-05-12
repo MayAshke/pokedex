@@ -1,0 +1,19 @@
+.load-more-button {
+  width: 210px;
+  height: 36px;
+  border-radius: 9px;
+  border-color: #373299;
+  border-width: 1px;
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 100%;
+  background-color: white;
+  color: #373299;
+}
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}

@@ -1,0 +1,6 @@
+<app-search-bar (search)="onSearchPokemon($event)"></app-search-bar>
+<app-pokemon-grid [pokemons]="displayedPokemons"></app-pokemon-grid>
+
+<div class="load-more-container">
+<button class="load-more-button" *ngIf="displayCount < pokemons.length" (click)="loadMore()" >Load More...</button>
+</div>
