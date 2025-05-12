@@ -1,0 +1,15 @@
+.search-button {
+    width: 87;
+    height: 36;
+    border-radius: 9px;
+    background-color: #373299;
+    color: #F7F7F9;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Roboto';
+    line-height: 100%;
+}
+
+.search-input {
+
+}

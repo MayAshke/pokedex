@@ -1,0 +1,49 @@
+.card {
+    width: 267.29168701171875px;
+    height: 255px;
+}
+
+.Rectangle {
+    position: relative;
+    width: 240.5625px;
+    height: 255px;
+    background-color: #F7F7F9;
+    border-radius: 9px;
+    box-shadow: 2px 2px 4px 0px #00000026;
+}
+
+.pokemon-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 267.29168701171875px;
+    height: 238.54962158203125px;
+}
+
+.pokemon-name {
+    position: absolute;
+    top: 210px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 115.4699935913086;
+    height: 31;
+    font-family: 'Roboto';
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 100%;
+    color: #373299;
+}
+
+.pokemon-id {
+    position: absolute;
+    top: 10px;
+    left: 30.15px;
+    width: 115.54;
+    height: 18;
+    font-family: 'Roboto';
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 100%;
+    color: #373299;
+}
