@@ -7,10 +7,18 @@
     box-sizing: border-box;
     padding: 0 16px;
   }
+
+  @media (max-width: 1070px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+  }
   
+/* 
   @media (max-width: 768px) {
     .grid-container {
     grid-template-columns: 1fr;
-    max-width: 400px;
+    max-width: 100%;
     }
-  }
+  } */

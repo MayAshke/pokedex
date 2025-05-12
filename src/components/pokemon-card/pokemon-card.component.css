@@ -4,12 +4,19 @@
     height: 255px; 
 }
 
-@media (max-width: 768px) {
+
+@media (max-width: 1070px) {
     .card {
       margin: 0 auto;
     }
 }
 
+/* 
+@media (max-width: 768px) {
+    .card {
+      margin: 0 auto;
+    }
+} */
 
 .Rectangle {
     position: absolute;

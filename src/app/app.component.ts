@@ -15,16 +15,24 @@ import { SearchBarComponent } from '../components/search-bar/search-bar.componen
 export class AppComponent implements OnInit {
   title = 'pokedex';
   pokemons: any[] = [];
+  displayedPokemons: any[] = []; // הפוקימונים שמוצגים בפועל
+  displayCount = 12; // כמה פוקימונים מוצגים בהתחלה
 
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit() {
-    this.pokemonService.getPokemonList().subscribe(response => {
-      this.pokemons = response.results;
+    this.pokemonService.getPokemonList().subscribe((data: any) => {
+      this.pokemons = data.results; // התוצאה נמצאת בתוך results!
+      this.displayedPokemons = this.pokemons.slice(0, this.displayCount);
     });
   }
 
   onSearchPokemon(term: string) {
     console.log('חיפוש על:', term);
+  }
+
+  loadMore() {
+    this.displayCount += 12;
+    this.displayedPokemons = this.pokemons.slice(0, this.displayCount);
   }
 }
