@@ -3,7 +3,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 32px 0;
     max-width: 1070px;
-    margin: 174px auto 0 auto;
+    margin: 0 auto;
     box-sizing: border-box;
     padding: 0 16px;
   }
@@ -14,11 +14,3 @@
         max-width: 100%;
     }
   }
-  
-/* 
-  @media (max-width: 768px) {
-    .grid-container {
-    grid-template-columns: 1fr;
-    max-width: 100%;
-    }
-  } */
