@@ -1,4 +1,28 @@
-<div class="search-bar">
+<!-- <div class="search-bar">
     <input class="search-input" [(ngModel)]="searchTerm"/>
     <button class="search-button" (click)="onSearch()">Search</button>
-  </div>
+</div> -->
+
+<div class="search-bar">
+  <div class="search-row">
+  <input
+    class="search-input"
+    [(ngModel)]="searchTerm"
+    (focus)="showRecent = true"
+    (blur)="hideRecentWithDelay()"
+  />
+  <button class="search-button" (click)="onSearch()">Search</button>
+</div>
+
+  <!-- הרשימה מופיעה מתחת ל-input -->
+  <ul class="recent-searches" *ngIf="showRecent && recentSearches.length > 0">
+    <li class="recent-header">
+      <span class="title">RECENT SEARCHES</span>
+      <button class="clear-button" (mousedown)="clearRecent()">CLEAR</button>
+    </li>
+    <li *ngFor="let term of recentSearches">
+      <span (mousedown)="selectRecent(term)">{{ term }}</span>
+      <button class="remove-button" (mousedown)="removeRecent(term)">x</button>
+    </li>
+  </ul>
+</div>

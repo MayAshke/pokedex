@@ -11,10 +11,43 @@ import { FormsModule } from '@angular/forms';
 })
 export class SearchBarComponent {
   searchTerm: string = '';
+  showRecent = false;
+  recentSearches: string[] = [];
 
   @Output() search = new EventEmitter<string>();
 
   onSearch() {
-    this.search.emit(this.searchTerm);
+    if (this.searchTerm.trim()) {
+      this.search.emit(this.searchTerm);
+
+      // עדכון החיפושים האחרונים
+      if (!this.recentSearches.includes(this.searchTerm)) {
+        this.recentSearches.unshift(this.searchTerm);
+        if (this.recentSearches.length > 5) {
+          this.recentSearches.pop();
+        }
+      }
+
+      this.showRecent = false;
+    }
+  }
+
+  selectRecent(term: string) {
+    this.searchTerm = term;
+    this.onSearch();
+  }
+
+  removeRecent(term: string) {
+    this.recentSearches = this.recentSearches.filter(t => t !== term);
+  }
+
+  hideRecentWithDelay() {
+    setTimeout(() => {
+      this.showRecent = false;
+    }, 300); // כדי לא לסגור מיד אם לוחצים על X
+  }
+
+  clearRecent() {
+    this.recentSearches = [];
   }
 }

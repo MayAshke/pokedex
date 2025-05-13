@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PokemonService } from '../../services/pokemon.service';
+import { PokemonService } from '../../../services/pokemon.service';
 import { CommonModule } from '@angular/common';
-import { PokemonCardComponent } from '../../components/pokemon-card/pokemon-card.component';
-import { PokemonGridComponent } from '../../components/pokemon-grid/pokemon-grid.component';
-import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
+import { PokemonCardComponent } from '../../pokemon-card/pokemon-card.component';
+import { PokemonGridComponent } from '../../pokemon-grid/pokemon-grid.component';
+import { SearchBarComponent } from '../../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-root',
@@ -29,9 +29,16 @@ export class HomepageComponent implements OnInit {
   }
 
   onSearchPokemon(term: string) {
-    console.log('חיפוש על:', term);
+    if (!term.trim()) {
+      this.displayedPokemons = this.pokemons.slice(0, this.displayCount);
+    } else {
+      const lowerTerm = term.toLowerCase();
+      this.displayedPokemons = this.pokemons.filter(pokemon =>
+        pokemon.name.toLowerCase().includes(lowerTerm)
+      );
+    }
   }
-
+  
   loadMore() {
     this.displayCount += 12;
     this.displayedPokemons = this.pokemons.slice(0, this.displayCount);

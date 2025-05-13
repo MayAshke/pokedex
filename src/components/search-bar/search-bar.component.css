@@ -1,15 +1,124 @@
 .search-button {
-    width: 87;
-    height: 36;
+    width: 87px;
+    height: 36px;
     border-radius: 9px;
     background-color: #373299;
     color: #F7F7F9;
     font-size: 18px;
-    font-weight: 400;
-    font-family: 'Roboto';
     line-height: 100%;
+    border-width: 0;
 }
 
-/*.search-input {
+.search-row {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
 
-}*/
+.search-bar {
+    width: 434px;
+    height: 37px;
+    margin: 123px auto; 
+    font-family: 'Roboto';
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.search-input {
+    width: 341px;
+    height: 36px;
+    border-radius: 9px;
+    border: 1px;
+    background-color: #F7F7F9;
+    border-color: #02016680;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .search-bar{
+        width: 292px;
+        height: 37px;
+        gap: 5px;
+    }
+    .search-input {
+        width: 200px;
+    }
+    .recent-searches {
+        right: 0; /* שלא יידרס עם כפתור בצד ימין */
+        font-size: 16px;
+    }
+}
+
+.recent-searches {
+    position: absolute;
+    top: 42px; /* קצת מתחת ל-input */
+    left: 0;
+    right: 90px; /* שיראה מעל ה־input ולא ידרוס את הכפתור */
+    background-color: #FFFFFF;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    z-index: 10;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    /*box-shadow: 0 2px 8px rgba(0,0,0,0.15);*/
+  }
+  
+  .recent-searches li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    color: #5A5A89;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  
+  .recent-searches li:hover {
+    background-color: #eee;
+  }
+  
+  .remove-button {
+    background: none;
+    border: none;
+    color: #5A5A8980;
+    font-size: 15px;
+    font-weight: 100;
+    cursor: pointer;
+  }
+  
+  .remove-button:hover {
+    color: red;
+  }
+
+  .recent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    font-weight: 600;
+    /*background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;*/
+    font-size: 13px;
+    color: #373299;
+  }
+  
+  .clear-button {
+    font-size: 13px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-weight: 700;
+    color: #373299;
+  }
+  
+  .clear-button:hover {
+    color: red;
+  }
