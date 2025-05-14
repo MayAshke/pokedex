@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" (click)="goToDetails()">
   <div class="Rectangle">
     <h3 class="pokemon-id">#{{ getFormattedPokemonId() }}</h3>
     <img class="pokemon-image" [src]="getPokemonImageUrl()" [alt]="pokemon.name"/>

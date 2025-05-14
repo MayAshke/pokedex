@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../../../services/pokemon.service';
 import { CommonModule } from '@angular/common';
-import { PokemonCardComponent } from '../../pokemon-card/pokemon-card.component';
 import { PokemonGridComponent } from '../../pokemon-grid/pokemon-grid.component';
 import { SearchBarComponent } from '../../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, PokemonCardComponent, PokemonGridComponent, SearchBarComponent],
+  imports: [CommonModule, PokemonGridComponent, SearchBarComponent],
   templateUrl: 'homepage.component.html',
   styleUrls: ['homepage.component.css']
 })

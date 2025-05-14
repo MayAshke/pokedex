@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -10,6 +11,8 @@ import { CommonModule } from '@angular/common';
 })
 export class PokemonCardComponent {
   @Input() pokemon: any;
+  
+  constructor(private router: Router) {}
 
   getPokemonId(): string {
     const urlParts = this.pokemon.url.split('/');
@@ -24,5 +27,9 @@ export class PokemonCardComponent {
   getPokemonImageUrl(): string {
     const id = this.getPokemonId();
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+  }
+
+  goToDetails() {
+    this.router.navigate(['/pokemon', this.pokemon.name]);
   }
 }

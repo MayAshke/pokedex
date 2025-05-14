@@ -1,0 +1,28 @@
+<div class="card" *ngIf="pokemon">
+  <div class="Rectangle">
+    <h3 class="pokemon-id">#{{ getFormattedPokemonId() }}</h3>
+    <img class="pokemon-image" [src]="getPokemonImageUrl()" [alt]="pokemon.name"/>
+  <h3 class="pokemon-name">{{ pokemon.name }}</h3>
+  <div class="pokemon-types">
+    <span class="type" *ngFor="let type of pokemon.types" [ngStyle]="{ 'background-color': getTypeColor(type.type.name), 'color': '#fff' }" class="type-badge">{{ type.type.name | titlecase }}</span>
+  </div>
+  <div class="line" ></div>
+  <div class="information">
+    <h4 class="Description-title">Description</h4>
+    <div class="Description-box">
+    <h4 class="Description">A strange seed was planted on its back at birth. The plant sprouts and grows with this POKéMON.</h4>
+    </div>
+    <h4 class="stats-title">Stats</h4>
+    <div class="pokemon-stats" *ngIf="pokemon?.stats">
+      <div class="stat" *ngFor="let stat of pokemon.stats">
+        <span class="stat-name">{{ stat.stat.name | titlecase }}: </span>
+        <span class="stat-value">{{ stat.base_stat }}</span>
+      </div>
+    </div>
+    <div class="stat-total">
+      <span class="stat-name">Total: </span>
+      <span class="stat-value"> {{ getTotalStats() }}</span>
+    </div>
+    </div>
+  </div>
+</div>
