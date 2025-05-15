@@ -2,6 +2,7 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FavoritesService } from '../../services/favorites.service';
+import { Pokemon } from '../../types/pokemon.type';
 
 @Component({
   selector: 'app-pokemon-info-card',
@@ -11,7 +12,7 @@ import { FavoritesService } from '../../services/favorites.service';
   styleUrls: ['./pokemon-info-card.component.css']
 })
 export class PokemonInfoCardComponent implements OnInit, OnChanges {
-  @Input() pokemon: any;
+  @Input() pokemon!: Pokemon;
   isFavorite: boolean = false;
 
   constructor(

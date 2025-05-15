@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PokemonGridComponent } from '../../pokemon-grid/pokemon-grid.component';
 import { SearchBarComponent } from '../../search-bar/search-bar.component';
 import { FilterComponent } from '../../filter/filter.component';
-import { Pokemon } from '../../../app/models/pokemon.model'; 
+import { Pokemon } from '../../../types/pokemon.type'; 
 import { Observable, forkJoin } from 'rxjs';
 
 @Component({
@@ -17,8 +17,8 @@ import { Observable, forkJoin } from 'rxjs';
 
 export class HomepageComponent implements OnInit {
   title = 'pokedex';
-  pokemons: any[] = [];
-  displayedPokemons: any[] = [];
+  pokemons: Pokemon[] = [];
+  displayedPokemons: Pokemon[] = [];
   filteredPokemons: Pokemon[] = [];
   displayCount = 12; 
   showFilter = false;
@@ -28,11 +28,11 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit() {
     this.pokemonService.getPokemonList().subscribe((data: any) => {
-      const requests: Observable<any>[] = data.results.map((pokemon: any) =>
+      const requests: Observable<Pokemon>[] = data.results.map((pokemon: any) =>
         this.pokemonService.getPokemonDetails(pokemon.url)
       );
   
-      forkJoin(requests).subscribe((fullPokemons: any[]) => {
+      forkJoin(requests).subscribe((fullPokemons: Pokemon[]) => {
         this.pokemons = fullPokemons;
         this.filteredPokemons = fullPokemons;
         this.displayedPokemons = fullPokemons.slice(0, this.displayCount); 

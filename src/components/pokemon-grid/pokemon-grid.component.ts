@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonCardComponent } from '../pokemon-card/pokemon-card.component';
+import { Pokemon } from '../../types/pokemon.type';
 
 @Component({
   selector: 'app-pokemon-grid',
@@ -10,6 +11,6 @@ import { PokemonCardComponent } from '../pokemon-card/pokemon-card.component';
   styleUrls: ['./pokemon-grid.component.css']
 })
 export class PokemonGridComponent {
-  @Input() pokemons: any[] = [];
+  @Input() pokemons: Pokemon[] = [];
   @Input() showRemoveFromFavorites: boolean = false;
 }

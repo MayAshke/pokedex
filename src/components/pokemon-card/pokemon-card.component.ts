@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FavoritesService } from '../../services/favorites.service';
+import { Pokemon } from '../../types/pokemon.type';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -11,7 +12,7 @@ import { FavoritesService } from '../../services/favorites.service';
   styleUrls: ['./pokemon-card.component.css']
 })
 export class PokemonCardComponent {
-  @Input() pokemon: any;
+  @Input() pokemon!: Pokemon;
   @Input() showRemoveFromFavorites: boolean = false;
 
   constructor(
@@ -24,7 +25,7 @@ export class PokemonCardComponent {
   }
 
   getPokemonImageUrl(): string {
-    return this.pokemon.sprites.front_default;
+    return this.pokemon.sprites.front_default || '';
   }
 
   goToDetails() {
