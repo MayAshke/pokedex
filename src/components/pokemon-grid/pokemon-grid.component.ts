@@ -11,4 +11,5 @@ import { PokemonCardComponent } from '../pokemon-card/pokemon-card.component';
 })
 export class PokemonGridComponent {
   @Input() pokemons: any[] = [];
+  @Input() showRemoveFromFavorites: boolean = false;
 }

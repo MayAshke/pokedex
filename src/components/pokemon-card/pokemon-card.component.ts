@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -11,8 +12,12 @@ import { Router } from '@angular/router';
 })
 export class PokemonCardComponent {
   @Input() pokemon: any;
-  
-  constructor(private router: Router) {}
+  @Input() showRemoveFromFavorites: boolean = false;
+
+  constructor(
+    private router: Router,
+    private favoritesService: FavoritesService
+  ) {}  
 
   getFormattedPokemonId(): string {
     return this.pokemon.id.toString().padStart(3, '0');
@@ -24,5 +29,9 @@ export class PokemonCardComponent {
 
   goToDetails() {
     this.router.navigate(['/pokemon', this.pokemon.name]);
+  }
+
+  removeFromFavorites() {
+    this.favoritesService.remove(this.pokemon);
   }
 }

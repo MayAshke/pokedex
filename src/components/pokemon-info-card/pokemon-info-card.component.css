@@ -24,6 +24,14 @@
     top: 5%;
 }
 
+.is-favorite-icon {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 20px;
+    height: 18px;
+}
+
 .pokemon-image {
     position: absolute;
     top: 40%;
@@ -200,5 +208,12 @@
     margin-bottom: -20px;
   }
 
-  }
+  .is-favorite-icon {
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    width: 20px;
+    height: 18px;
+    }
+}
   

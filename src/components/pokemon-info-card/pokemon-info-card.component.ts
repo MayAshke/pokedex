@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-pokemon-info-card',
@@ -9,10 +10,24 @@ import { Router } from '@angular/router';
   templateUrl: './pokemon-info-card.component.html',
   styleUrls: ['./pokemon-info-card.component.css']
 })
-export class PokemonInfoCardComponent {
+export class PokemonInfoCardComponent implements OnInit, OnChanges {
   @Input() pokemon: any;
+  isFavorite: boolean = false;
+
+  constructor(
+    private router: Router,
+    private favoritesService: FavoritesService
+  ) {}  
   
-  constructor(private router: Router) {}
+  ngOnInit() {
+    this.updateFavoriteStatus();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['pokemon']) {
+      this.updateFavoriteStatus();
+    }
+  }
 
   getPokemonId(): string {
     return this.pokemon?.id?.toString() ?? '';
@@ -55,5 +70,18 @@ export class PokemonInfoCardComponent {
       fairy:   '#D685AD'
     };
     return typeColors[typeName] || '#A8A878';
+  }
+
+  updateFavoriteStatus() {
+    this.isFavorite = this.favoritesService.isFavorite(this.pokemon);
+  }
+
+  toggleFavorite() {
+    if (this.isFavorite) {
+      this.favoritesService.remove(this.pokemon);
+    } else {
+      this.favoritesService.add(this.pokemon);
+    }
+    this.updateFavoriteStatus();
   }
 }

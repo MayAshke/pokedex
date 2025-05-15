@@ -1,0 +1,14 @@
+<div class="favorites-component">
+    <ng-container *ngIf="favoritePokemons$ | async as favoritePokemons">
+      <div *ngIf="favoritePokemons.length > 0; else noFavs">
+        <app-pokemon-grid
+          [pokemons]="favoritePokemons"
+          [showRemoveFromFavorites]="true"
+        ></app-pokemon-grid>
+      </div>
+    </ng-container>
+  
+    <ng-template #noFavs>
+      <p>No favorite POKéMON yet</p>
+    </ng-template>
+</div>

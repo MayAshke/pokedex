@@ -1,0 +1,12 @@
+.favorites-component {
+  margin-top: 123px; 
+  font-family: 'Roboto';
+  font-size: 30px;
+  color: #373299;
+}
+
+@media (max-width: 1070px) {
+  .favorites-component{
+      margin-top: 200px;
+  }
+}
