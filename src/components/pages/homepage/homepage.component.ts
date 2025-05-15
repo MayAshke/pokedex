@@ -50,12 +50,12 @@ export class HomepageComponent implements OnInit {
       );
     }
   }
-  
+
   loadMore() {
     this.displayCount += 12;
-    this.displayedPokemons = this.pokemons.slice(0, this.displayCount);
+    this.displayedPokemons = this.filteredPokemons.slice(0, this.displayCount);
   }
-
+  
   toggleFilter() {
     this.showFilter = !this.showFilter;
   }
