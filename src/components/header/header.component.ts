@@ -14,7 +14,6 @@ export class HeaderComponent {
 
     constructor(private router: Router) {}
   
-    // עדכון currentRoute כאשר לוחצים על כפתור
     setCurrentRoute(route: string) {
       this.currentRoute = route;
     }

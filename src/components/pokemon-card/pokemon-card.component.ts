@@ -14,19 +14,12 @@ export class PokemonCardComponent {
   
   constructor(private router: Router) {}
 
-  getPokemonId(): string {
-    const urlParts = this.pokemon.url.split('/');
-    return urlParts[urlParts.length - 2];
-  }
-
   getFormattedPokemonId(): string {
-    const id = this.getPokemonId();
-    return id.toString().padStart(3, '0');
+    return this.pokemon.id.toString().padStart(3, '0');
   }
 
   getPokemonImageUrl(): string {
-    const id = this.getPokemonId();
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+    return this.pokemon.sprites.front_default;
   }
 
   goToDetails() {

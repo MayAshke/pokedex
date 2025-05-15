@@ -44,7 +44,7 @@ export class SearchBarComponent {
   hideRecentWithDelay() {
     setTimeout(() => {
       this.showRecent = false;
-    }, 300); // כדי לא לסגור מיד אם לוחצים על X
+    }, 300); 
   }
 
   clearRecent() {

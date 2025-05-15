@@ -1,5 +1,9 @@
-<app-search-bar (search)="onSearchPokemon($event)"></app-search-bar>
+<div class="search-and-filter-line">
+    <app-search-bar (search)="onSearchPokemon($event)"></app-search-bar>
+    <app-filter (filterApplied)="applyFilters($event)" *ngIf="showFilter" (closeFilter)="toggleFilter()"></app-filter>
+    <button (click)="toggleFilter()" class="filter-button"><img src="filter-icon.svg" alt="Filter" class="filter-icon"/></button>
+</div>
 <app-pokemon-grid [pokemons]="displayedPokemons"></app-pokemon-grid>
 <div class="load-more-container">
-<button class="load-more-button" *ngIf="displayCount < pokemons.length" (click)="loadMore()" >Load More...</button>
+    <button class="load-more-button" *ngIf="displayCount < pokemons.length" (click)="loadMore()" >Load More...</button>
 </div>

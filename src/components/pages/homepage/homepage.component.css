@@ -17,3 +17,28 @@
   justify-content: center;
   margin-top: 32px;
 }
+
+.filter-button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.search-and-filter-line{
+  margin: 123px auto 32px auto; 
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+}
+
+.filter-icon {
+  height: 36px;
+}
+
+@media (max-width: 1070px) {
+  .search-and-filter-line{
+      margin-top: 200px;
+  }
+}

@@ -12,13 +12,11 @@
 .search-row {
     display: flex;
     gap: 5px;
-    align-items: center;
 }
 
 .search-bar {
     width: 434px;
     height: 37px;
-    margin: 123px auto 32px auto; 
     font-family: 'Roboto';
     position: relative;
     flex-direction: column;
@@ -39,7 +37,6 @@
 
 @media (max-width: 1070px) {
     .search-bar{
-        margin-top: 200px;
         width: 292px;
         height: 37px;
         gap: 5px;
@@ -55,9 +52,9 @@
 
 .recent-searches {
     position: absolute;
-    top: 42px; /* קצת מתחת ל-input */
+    top: 42px;
     left: 0;
-    right: 90px; /* שיראה מעל ה־input ולא ידרוס את הכפתור */
+    right: 90px; 
     background-color: #FFFFFF;
     border-radius: 6px;
     z-index: 10;
@@ -104,8 +101,6 @@
     align-items: center;
     padding: 6px 12px;
     font-weight: 600;
-    /*background-color: #f2f2f2;
-    border-bottom: 1px solid #ccc;*/
     font-size: 13px;
     color: #373299;
   }

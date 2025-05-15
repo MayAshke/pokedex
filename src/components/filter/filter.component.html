@@ -1,0 +1,22 @@
+<div class="filter-modal">
+    <h3 class="filter-title">פילטור</h3>
+    <form [formGroup]="filterForm" class="filter-form">
+    <label>סוג
+        <div class="custom-select" (click)="toggleDropdown()">
+            <div class="selected" [ngClass]="{ 'placeholder': !selectedType }">{{ selectedType || 'בחירה' }}
+                <img src="arrow-icon.svg" alt="dropdown arrow" class="arrow-icon">
+            </div>           
+            <ul *ngIf="dropdownOpen" class="options">
+              <li *ngFor="let type of types" (click)="selectType(type)">{{ type }}</li>
+            </ul>
+        </div>
+    </label>
+      <label>(מינימלי) סך הנתונים הסטטיסטיים<input type="number" formControlName="totalStat"  placeholder="בחירה" /></label>
+      <label>גובה (מקסימלי)<input type="number" formControlName="height" placeholder="בחירה" /></label>
+      <div class="line"></div>
+      <div class="button-group">
+        <button type="button" (click)="applyFilters()" class="approve-button">חיפוש</button>
+        <button type="button" (click)="onCancel()" class="cancle-button">ביטול</button>
+      </div>
+    </form>
+  </div>
