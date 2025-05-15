@@ -20,7 +20,6 @@ export class SearchBarComponent {
     if (this.searchTerm.trim()) {
       this.search.emit(this.searchTerm);
 
-      // עדכון החיפושים האחרונים
       if (!this.recentSearches.includes(this.searchTerm)) {
         this.recentSearches.unshift(this.searchTerm);
         if (this.recentSearches.length > 5) {

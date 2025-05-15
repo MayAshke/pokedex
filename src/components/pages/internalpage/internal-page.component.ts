@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { PokemonInfoCardComponent } from '../../pokemon-info-card/pokemon-info-card.component';
+import { Pokemon } from '../../../types/pokemon.type'; 
 
 @Component({
   selector: 'app-internalpage',
@@ -12,16 +13,16 @@ import { PokemonInfoCardComponent } from '../../pokemon-info-card/pokemon-info-c
   styleUrls: ['./internal-page.component.css']
 })
 export class InternalpageComponent implements OnInit {
-  pokemon: any;
+  pokemon!: Pokemon;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     const name = this.route.snapshot.paramMap.get('name');
     if (name) {
-      this.http.get(`https://pokeapi.co/api/v2/pokemon/${name}`).subscribe(data => {
-        this.pokemon = data;
-      });
+        this.http.get<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${name}`).subscribe(data => {
+            this.pokemon = data;
+        });
     }
   }
 

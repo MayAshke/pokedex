@@ -3,6 +3,7 @@ import { FavoritesService } from '../../../services/favorites.service';
 import { CommonModule } from '@angular/common';
 import { PokemonGridComponent } from '../../pokemon-grid/pokemon-grid.component';
 import { Observable } from 'rxjs';
+import { Pokemon } from '../../../types/pokemon.type'; 
 
 @Component({
   selector: 'app-favorites',
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./favorites-page.component.css'],
 })
 export class FavoritesComponent {
-  favoritePokemons$: Observable<any[]>;
+  favoritePokemons$: Observable<Pokemon[]>;
 
   constructor(private favoritesService: FavoritesService) {
     this.favoritePokemons$ = this.favoritesService.favorites$;
