@@ -25,7 +25,7 @@
 
 .filter-title {
   font-size: 21px;
-  font-weight: 600;
+  font-weight: 550;
   text-align: right;
   margin-top: 0%;
   margin-bottom: 12%;
@@ -76,7 +76,8 @@ button {
 .cancle-button {
   color: #020166;
   background-color: #F7F7F9;
-  border-width: 8px;
+  border-width: 1px; 
+  border-style: solid;
   border-color: #020166;
 }
 
