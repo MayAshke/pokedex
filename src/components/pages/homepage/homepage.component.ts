@@ -5,7 +5,6 @@ import { PokemonGridComponent } from '../../pokemon-grid/pokemon-grid.component'
 import { SearchBarComponent } from '../../search-bar/search-bar.component';
 import { FilterComponent } from '../../filter/filter.component';
 import { Pokemon } from '../../../types/pokemon.type'; 
-import { Observable, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,63 +15,76 @@ import { Observable, forkJoin } from 'rxjs';
 })
 
 export class HomepageComponent implements OnInit {
-  title = 'pokedex';
-  pokemons: Pokemon[] = [];
+  allPokemons: Pokemon[] = [];
   displayedPokemons: Pokemon[] = [];
-  filteredPokemons: Pokemon[] = [];
-  displayCount = 12; 
+  searchTerm: string = '';
+  filters: any = {};
+  limit = 12;
+  offset = 0;
   showFilter = false;
-  isFilterOpen = false;
+  isLoading = false;
 
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit() {
-    this.pokemonService.getPokemonList().subscribe((data: any) => {
-      const requests: Observable<Pokemon>[] = data.results.map((pokemon: any) =>
-        this.pokemonService.getPokemonDetails(pokemon.url)
-      );
-  
-      forkJoin(requests).subscribe((fullPokemons: Pokemon[]) => {
-        this.pokemons = fullPokemons;
-        this.filteredPokemons = fullPokemons;
-        this.displayedPokemons = fullPokemons.slice(0, this.displayCount); 
-      });
-    });
+    this.loadAllPokemons();
   }
 
-  onSearchPokemon(term: string) {
-    if (!term.trim()) {
-      this.displayedPokemons = this.pokemons.slice(0, this.displayCount);
-    } else {
-      const lowerTerm = term.toLowerCase();
-      this.displayedPokemons = this.pokemons.filter(pokemon =>
-        pokemon.name.toLowerCase().includes(lowerTerm)
-      );
-    }
+  loadAllPokemons() {
+    this.isLoading = true;
+    this.pokemonService.getAllPokemons().subscribe((fullPokemons: Pokemon[]) => {
+      this.allPokemons = fullPokemons;
+      this.displayedPokemons = this.getFilteredPokemons().slice(0, this.limit);
+      this.offset = this.limit;
+      this.isLoading = false;
+    });
   }
 
   loadMore() {
-    this.displayCount += 12;
-    this.displayedPokemons = this.filteredPokemons.slice(0, this.displayCount);
+    const filtered = this.getFilteredPokemons();
+    const nextBatch = filtered.slice(this.offset, this.offset + this.limit);
+    this.displayedPokemons = [...this.displayedPokemons, ...nextBatch];
+    this.offset += this.limit;
   }
-  
+
   toggleFilter() {
     this.showFilter = !this.showFilter;
   }
-  
-  applyFilters(filters: any) {
-    const { type, totalStat, height } = filters;
-  
-    this.displayedPokemons = this.pokemons.filter(pokemon => {
+
+  getFilteredPokemons(): Pokemon[] {
+    const term = this.searchTerm.toLowerCase();
+    return this.allPokemons.filter(pokemon => {
+      const matchesSearch = !term || pokemon.name.toLowerCase().includes(term);
+      const { type, totalStat, height } = this.filters;
       const matchesType = !type || pokemon.types.some((t: { type: { name: string } }) => t.type.name === type);
-  
       const total = pokemon.stats.reduce((acc: number, stat: { base_stat: number }) => acc + stat.base_stat, 0);
       const matchesTotalStat = !totalStat || total >= +totalStat;
-  
       const matchesHeight = !height || pokemon.height <= +height;
-  
-      return matchesType && matchesTotalStat && matchesHeight;
+      return matchesSearch && matchesType && matchesTotalStat && matchesHeight;
     });
-    this.showFilter = false; 
+  }
+
+  applySearchAndFilter() {
+    const filtered = this.getFilteredPokemons();
+    this.offset = this.limit;
+    this.displayedPokemons = filtered.slice(0, this.limit);
+  }
+
+  onSearchPokemon(event: { term: string, filters?: any }) {
+    this.searchTerm = event.term;
+    this.applySearchAndFilter();
+  }
+
+  onFilterApplied(filters: any) {
+    this.filters = filters;
+    this.showFilter = false;
+    this.applySearchAndFilter();
+  }
+
+  resetFilters() {
+    this.searchTerm = '';
+    this.filters = {};
+    this.offset = this.limit;
+    this.displayedPokemons = this.allPokemons.slice(0, this.limit);
   }
 }

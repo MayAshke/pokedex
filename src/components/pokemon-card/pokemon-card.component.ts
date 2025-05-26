@@ -14,6 +14,8 @@ import { Pokemon } from '../../types/pokemon.type';
 export class PokemonCardComponent {
   @Input() pokemon!: Pokemon;
   @Input() showRemoveFromFavorites: boolean = false;
+  @Input() showFavoriteIcon: boolean = true;
+  isFavorite: boolean = false;
 
   constructor(
     private router: Router,
@@ -34,5 +36,24 @@ export class PokemonCardComponent {
 
   removeFromFavorites() {
     this.favoritesService.remove(this.pokemon);
+  }
+
+  ngOnInit(): void {
+    this.isFavorite = this.favoritesService.isFavorite(this.pokemon);
+  }
+
+  ngOnChanges(): void {
+    if (this.pokemon) {
+      this.isFavorite = this.favoritesService.isFavorite(this.pokemon);
+    }
+  }
+
+  toggleFavorite(): void {
+    if (this.isFavorite) {
+      this.favoritesService.remove(this.pokemon);
+    } else {
+      this.favoritesService.add(this.pokemon);
+    }
+    this.isFavorite = !this.isFavorite;
   }
 }

@@ -42,3 +42,14 @@
       margin-top: 200px;
   }
 }
+
+.all-button {
+  width: 50px;
+  height: 36px;
+  border-radius: 9px;
+  background-color: #373299;
+  color: #F7F7F9;
+  font-size: 18px;
+  line-height: 100%;
+  border-width: 0;
+}

@@ -13,4 +13,5 @@ import { Pokemon } from '../../types/pokemon.type';
 export class PokemonGridComponent {
   @Input() pokemons: Pokemon[] = [];
   @Input() showRemoveFromFavorites: boolean = false;
+  @Input() showFavoriteIcon: boolean = true;
 }

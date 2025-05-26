@@ -4,6 +4,6 @@
     </div>
     <div class="nav-links">
     <a routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" [ngClass]="{ 'active': currentRoute === '/home' }" (click)="setCurrentRoute('/home')">Home</a>  
-    <a routerLink="/favorites" routerLinkActive="active-link" [ngClass]="{ 'active': currentRoute === '/favorites' }" (click)="setCurrentRoute('/favorites')">Favorites</a>
+    <a routerLink="/favorites" routerLinkActive="active-link" [ngClass]="{ 'active': currentRoute === '/favorites' }" (click)="setCurrentRoute('/favorites')">Favorites ({{ (favoritesCount$ | async) !== null ? (favoritesCount$ | async) : 0 }})</a>
     </div>
 </nav>

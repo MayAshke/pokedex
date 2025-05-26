@@ -39,6 +39,8 @@
     transform: translate(-50%, -50%);
     width: 337px;
     height: 291px;
+    max-width: 230px;
+    max-height: 210px;
 }
 
 .pokemon-name {

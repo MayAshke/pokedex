@@ -14,19 +14,19 @@ export class SearchBarComponent {
   showRecent = false;
   recentSearches: string[] = [];
 
-  @Output() search = new EventEmitter<string>();
+  @Output() search = new EventEmitter<{ term: string, filters?: any }>();
 
   onSearch() {
     if (this.searchTerm.trim()) {
-      this.search.emit(this.searchTerm);
-
+      this.search.emit({ term: this.searchTerm });
+  
       if (!this.recentSearches.includes(this.searchTerm)) {
         this.recentSearches.unshift(this.searchTerm);
         if (this.recentSearches.length > 5) {
           this.recentSearches.pop();
         }
       }
-
+  
       this.showRecent = false;
     }
   }
@@ -48,5 +48,11 @@ export class SearchBarComponent {
 
   clearRecent() {
     this.recentSearches = [];
+  }
+
+  clearSearch() {
+    this.searchTerm = '';
+    this.search.emit({ term: '' }); 
+    this.showRecent = false;
   }
 }

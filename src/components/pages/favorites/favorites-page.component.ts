@@ -19,3 +19,4 @@ export class FavoritesComponent {
     this.favoritePokemons$ = this.favoritesService.favorites$;
   }
 }
+

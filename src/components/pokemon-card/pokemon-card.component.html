@@ -3,6 +3,14 @@
     <h3 class="pokemon-id">#{{ getFormattedPokemonId() }}</h3>
     <img class="pokemon-image" [src]="getPokemonImageUrl()" [alt]="pokemon.name"/>
   <h3 class="pokemon-name">{{ pokemon.name }}</h3>
+  <div class="is-favorite-icon" *ngIf="showFavoriteIcon" (click)="toggleFavorite(); $event.stopPropagation()">
+    <ng-container *ngIf="isFavorite; else notFavorite">
+      <img src="favorite-icon.svg" alt="favorite" class="favorite-icon" />
+    </ng-container>
+    <ng-template #notFavorite>
+      <img src="non-favorite-icon.svg" alt="non favorite" class="non-favorite-icon" />
+    </ng-template>
+  </div>
   <button class="remove-button" *ngIf="showRemoveFromFavorites" (click)="removeFromFavorites(); $event.stopPropagation()">x</button>
   </div>
 </div>

@@ -1,6 +1,9 @@
 <div class="search-bar">
   <div class="search-row">
-    <input class="search-input" [(ngModel)]="searchTerm" (focus)="showRecent = true" (blur)="hideRecentWithDelay()" />
+    <div class="input-wrapper">
+      <input class="search-input" [(ngModel)]="searchTerm" (focus)="showRecent = true" (blur)="hideRecentWithDelay()" />
+      <button class="clear-input-button" *ngIf="searchTerm" (click)="clearSearch()" aria-label="Clear search">×</button>
+    </div>
     <button class="search-button" (click)="onSearch()">Search</button>
   </div>
   <ul class="recent-searches" *ngIf="showRecent && recentSearches.length > 0">
